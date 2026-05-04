@@ -105,12 +105,12 @@ uvicorn app.main:app --reload
 
 Il database utilizzato è SQLite.
 
-👉 Il file **viene creato automaticamente al primo avvio del backend**
-👉 Non è incluso nella repository per motivi di portabilità
+- Il file **viene creato automaticamente al primo avvio del backend**
+- Non è incluso nella repository per motivi di portabilità
 
 ---
 
-## 📡 API principali
+## API principali
 
 | Metodo | Endpoint         | Descrizione           |
 | ------ | ---------------- | --------------------- |
