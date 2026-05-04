@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="dashboard">
+
+<!-- ================= TITOLO ASSUNZIONI E LOGOUT ================= -->
+<div class="topbar">
+
+    <h2>Assunzioni di oggi</h2>
+
+    <button class="logout-btn" onclick="logout()">
+        Logout
+    </button>
+
+</div>
+<!-- ================= FILTRI ================= -->
+<div class="filters">
+
+    <button onclick="setFiltro('TUTTE')">Tutte</button>
+    <button onclick="setFiltro('DA_PRENDERE')">Da prendere</button>
+    <button onclick="setFiltro('PRESA')">Prese</button>
+    <button onclick="setFiltro('SALTATA')">Saltate</button>
+
+</div>
+
+<!-- ================= CONTENITORE ================= -->
+<div id="container"></div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

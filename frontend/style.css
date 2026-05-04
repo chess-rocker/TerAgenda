@@ -1,0 +1,194 @@
+body {
+    font-family: system-ui, -apple-system, Arial, sans-serif;
+    margin: 0;
+}
+
+/* ================= LOGIN ================= */
+.login-container {
+    width: 320px;
+    margin: 120px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+}
+
+.login-container h2 {
+    margin-bottom: 15px;
+}
+
+.login-container input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    outline: none;
+}
+
+.login-container input:focus {
+    border-color: #4CAF50;
+}
+
+.login-container button {
+    width: 100%;
+    padding: 10px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.login-container button:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
+}
+
+#msg {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* ================= DASHBOARD ================= */
+.dashboard {
+    background: #f4f6f8;
+    text-align: center;
+}
+
+h2 {
+    margin-top: 20px;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.logout-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.logout-btn:hover {
+    background-color: #c0392b;
+}
+
+/* ================= FILTRI ================= */
+.filters {
+    margin: 15px;
+}
+
+.filters button {
+    background: #3498db;
+    color: white;
+    margin: 5px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.filters button:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+}
+
+/* ================= CONTAINER CARD ================= */
+#container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+}
+
+/* ================= CARD ================= */
+.card {
+    background: white;
+    width: 260px;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+    text-align: left;
+    transition: 0.2s;
+    animation: fadeIn 0.25s ease-in;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* ================= BADGE STATO ================= */
+.badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    color: white;
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+.badge-green {
+    background: #2ecc71;
+}
+
+.badge-red {
+    background: #e74c3c;
+}
+
+.badge-gray {
+    background: #7f8c8d;
+}
+
+/* ================= BOTTONI GENERALI ================= */
+button {
+    margin: 5px 5px 0 0;
+    padding: 8px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+/* ================= ANIMAZIONE CARD ================= */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ================= RESPONSIVE BASE ================= */
+@media (max-width: 600px) {
+    .card {
+        width: 90%;
+    }
+
+    .login-container {
+        width: 90%;
+        margin: 80px auto;
+    }
+}

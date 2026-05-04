@@ -1,0 +1,61 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.6 Chrome/144.0.7559.236 Electron/40.8.4 Safari/537.36" version="29.6.6">
+  <diagram name="Pagina-1" id="zHmFr8TzuqbYrB60M-4I">
+    <mxGraphModel dx="1410" dy="825" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="XjsusbLMC5KR0o3KmvGn-1" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;direction=east;" value="Paziente" vertex="1">
+          <mxGeometry height="60" width="30" x="80" y="355" as="geometry" />
+        </mxCell>
+        <mxCell id="XjsusbLMC5KR0o3KmvGn-17" edge="1" parent="1" source="XjsusbLMC5KR0o3KmvGn-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="XjsusbLMC5KR0o3KmvGn-13" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XjsusbLMC5KR0o3KmvGn-2" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" value="Medico" vertex="1">
+          <mxGeometry height="60" width="30" x="485" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="XjsusbLMC5KR0o3KmvGn-8" parent="1" style="whiteSpace=wrap;html=1;align=left;verticalAlign=top;" value="Teragenda" vertex="1">
+          <mxGeometry height="680" width="600" x="200" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="XjsusbLMC5KR0o3KmvGn-3" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" value="Admin" vertex="1">
+          <mxGeometry height="60" width="30" x="80" y="655" as="geometry" />
+        </mxCell>
+        <mxCell id="XjsusbLMC5KR0o3KmvGn-22" edge="1" parent="1" source="XjsusbLMC5KR0o3KmvGn-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="XjsusbLMC5KR0o3KmvGn-10" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XjsusbLMC5KR0o3KmvGn-10" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="&lt;ul&gt;&lt;li&gt;Gestisce utenti;&lt;br&gt;&lt;br&gt;&lt;/li&gt;&lt;li&gt;Visualizza tutte le terapie;&lt;br&gt;&lt;br&gt;&lt;/li&gt;&lt;li&gt;Elimina dati;&lt;/li&gt;&lt;/ul&gt;" vertex="1">
+          <mxGeometry height="250" width="180" x="210" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="XjsusbLMC5KR0o3KmvGn-21" edge="1" parent="1" source="XjsusbLMC5KR0o3KmvGn-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="XjsusbLMC5KR0o3KmvGn-12" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XjsusbLMC5KR0o3KmvGn-12" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="&lt;ul&gt;&lt;li data-section-id=&quot;1kp3wne&quot; data-start=&quot;1082&quot; data-end=&quot;1104&quot;&gt;Visualizza terapie;&lt;br&gt;&lt;br&gt;&lt;/li&gt;&lt;li data-section-id=&quot;h0da2d&quot; data-start=&quot;1105&quot; data-end=&quot;1130&quot;&gt;Visualizza assunzioni;&lt;br&gt;&lt;br&gt;&lt;/li&gt;&lt;li data-section-id=&quot;h0da2d&quot; data-start=&quot;1105&quot; data-end=&quot;1130&quot;&gt;Segna assunzione come presa;&lt;br&gt;&lt;br&gt;&lt;/li&gt;&lt;li data-section-id=&quot;h0da2d&quot; data-start=&quot;1105&quot; data-end=&quot;1130&quot;&gt;Consulta storico;&lt;/li&gt;&lt;/ul&gt;" vertex="1">
+          <mxGeometry height="250" width="180" x="210" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="XjsusbLMC5KR0o3KmvGn-18" edge="1" parent="1" source="XjsusbLMC5KR0o3KmvGn-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="XjsusbLMC5KR0o3KmvGn-13" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XjsusbLMC5KR0o3KmvGn-13" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="&lt;ul&gt;&lt;li&gt;Crea terapia;&lt;br&gt;&lt;br&gt;&lt;/li&gt;&lt;li&gt;Modifica terapia;&lt;br&gt;&lt;br&gt;&lt;/li&gt;&lt;li&gt;Elimina terapia;&lt;br&gt;&lt;br&gt;&lt;/li&gt;&lt;li&gt;Firma terapia;&lt;/li&gt;&lt;/ul&gt;" vertex="1">
+          <mxGeometry height="250" width="180" x="410" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="XjsusbLMC5KR0o3KmvGn-23" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Genera assunzioni" vertex="1">
+          <mxGeometry height="40" width="120" x="670" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="XjsusbLMC5KR0o3KmvGn-24" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Genera firma digitale" vertex="1">
+          <mxGeometry height="40" width="120" x="670" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="XjsusbLMC5KR0o3KmvGn-25" edge="1" parent="1" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;entryX=0.783;entryY=0.206;entryDx=0;entryDy=0;entryPerimeter=0;" target="XjsusbLMC5KR0o3KmvGn-8" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="560" y="340" as="sourcePoint" />
+            <mxPoint x="620" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XjsusbLMC5KR0o3KmvGn-26" edge="1" parent="1" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;entryX=0.783;entryY=0.206;entryDx=0;entryDy=0;entryPerimeter=0;" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="560" y="429.5" as="sourcePoint" />
+            <mxPoint x="670" y="429.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
