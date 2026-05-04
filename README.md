@@ -15,17 +15,17 @@ L’applicazione nasce per risolvere un problema reale nel settore sanitario:
 
 ##  Funzionalità principali
 
-* ✔ Registrazione e login utenti
-* ✔ Creazione terapie da parte del medico
-* ✔ Generazione automatica delle assunzioni
-* ✔ Visualizzazione giornaliera delle dosi
-* ✔ Aggiornamento stato:
+- Registrazione e login utenti
+- Creazione terapie da parte del medico
+- Generazione automatica delle assunzioni
+- Visualizzazione giornaliera delle dosi
+-  Aggiornamento stato:
 
-  * DA_PRENDERE
-  * PRESA
-  * SALTATA
-* ✔ Filtri dinamici nella dashboard
-* ✔ Interfaccia semplice e intuitiva
+  - DA_PRENDERE
+  - PRESA
+  - SALTATA
+- Filtri dinamici nella dashboard
+- Interfaccia semplice e intuitiva
 
 ---
 
@@ -33,11 +33,9 @@ L’applicazione nasce per risolvere un problema reale nel settore sanitario:
 
 L’applicazione segue un’architettura **full-stack basata su API REST**:
 
-Frontend (HTML, CSS, JavaScript)
-⬇
-Backend (FastAPI - Python)
-⬇
-Database (SQLite)
+- Frontend (HTML, CSS, JavaScript)
+- Backend (FastAPI - Python)
+- Database (SQLite)
 
 ---
 
@@ -59,7 +57,7 @@ TerAgenda/
 │   ├── script.js
 │   └── style.css
 │
-├── docs/                # Diagrammi UML e ER
+├── docs/                # Diagrammi Caso d'Uso, UML, ER
 ├── requirements.txt
 └── README.md
 ```
@@ -68,7 +66,7 @@ TerAgenda/
 
 ## Come avviare il progetto
 
-### 1- Clonare la repository
+1- Clonare la repository
 
 ```bash
 git clone https://github.com/tuo-username/TerAgenda.git
@@ -77,7 +75,7 @@ cd TerAgenda
 
 ---
 
-### 2- Installare le dipendenze
+2- Installare le dipendenze
 
 ```bash
 pip install -r requirements.txt
@@ -85,7 +83,7 @@ pip install -r requirements.txt
 
 ---
 
-### 3- Avviare il backend
+3- Avviare il backend
 
 ```bash
 uvicorn app.main:app --reload
@@ -93,11 +91,10 @@ uvicorn app.main:app --reload
 
 ---
 
-### 4- Accedere all’app
-
-* API: http://127.0.0.1:8000
-* Documentazione API: http://127.0.0.1:8000/docs
-* Frontend: aprire `frontend/login.html` (meglio tramite server locale)
+4- Accedere all’app
+- API: http://127.0.0.1:8000
+- Documentazione API: http://127.0.0.1:8000/docs
+- Frontend: aprire `frontend/login.html` (meglio tramite server locale)
 
 ---
 
@@ -125,13 +122,11 @@ Il database utilizzato è SQLite.
 
 L’applicazione è stata testata tramite:
 
-* ✔ Login utente
-* ✔ Creazione terapia
-* ✔ Generazione automatica assunzioni
-* ✔ Aggiornamento stato (presa/saltata)
-* ✔ Filtri frontend
-
-(Screenshot disponibili nella documentazione)
+- Login utente
+- Creazione terapia
+- Generazione automatica assunzioni
+- Aggiornamento stato (presa/saltata)
+- Filtri frontend
 
 ---
 
@@ -139,34 +134,31 @@ L’applicazione è stata testata tramite:
 
 Nella cartella `docs/` sono presenti:
 
-* Diagramma ER
-* Diagramma UML
-* Use Case
+- Diagramma ER
+- Diagramma UML
+- Use Case
 
 ---
 
 ## Sicurezza
 
-Versione base con autenticazione semplice.
-Possibili miglioramenti futuri:
-
-* JWT authentication
-* Cifratura dati
-* Gestione ruoli avanzata
+- Versione base con autenticazione semplice.
+- Possibili miglioramenti futuri:
+ - JWT authentication
+ - Cifratura dati
+ - Gestione ruoli avanzata
 
 ---
 
 ## Sviluppi futuri
 
-* Notifiche automatiche (reminder)
-* Dashboard medica avanzata
-* Applicazione mobile
-* Integrazione con sistemi sanitari reali
+- Notifiche automatiche (reminder)
+- Dashboard medica avanzata
+- Applicazione mobile
+- Integrazione con sistemi sanitari reali
 
 ---
 
 ## Conclusione
 
 TerAgenda rappresenta un prototipo di sistema sanitario digitale basato su architettura REST, progettato per migliorare la gestione e il monitoraggio delle terapie farmacologiche.
-
----
