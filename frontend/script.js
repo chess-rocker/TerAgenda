@@ -4,6 +4,25 @@ const BASE_URL = "http://127.0.0.1:8000";
 let tutteAssunzioni = [];
 let filtroAttivo = "TUTTE";
 
+/* ===================== AUTH HELPER ===================== */
+// Restituisce gli header con il token JWT, da usare in tutte le chiamate protette
+function authHeaders() {
+    const token = localStorage.getItem("token");
+    return {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + token
+    };
+}
+
+// Se non c'è token e siamo su una pagina protetta, torna al login
+function requireAuth() {
+    if (!localStorage.getItem("token")) {
+        window.location.href = "login.html";
+        return false;
+    }
+    return true;
+}
+
 /* ===================== LOGIN ===================== */
 function login() {
 
@@ -25,13 +44,14 @@ function login() {
     .then(res => res.json())
     .then(data => {
 
-        if (data.user_id) {
+        if (data.access_token) {
 
             msg.style.color = "green";
             msg.innerText = "Login riuscito!";
 
             setTimeout(() => {
                 localStorage.setItem("user", JSON.stringify(data));
+                localStorage.setItem("token", data.access_token);
                 window.location.href = "dashboard.html";
             }, 800);
 
@@ -57,10 +77,20 @@ function login() {
 /* ===================== LOAD ASSUNZIONI ===================== */
 function loadAssunzioni() {
 
-    fetch(BASE_URL + "/assunzioni?oggi=true")
-    .then(res => res.json())
-    .then(data => {
+    if (!requireAuth()) return;
 
+    fetch(BASE_URL + "/assunzioni?oggi=true", {
+        headers: authHeaders()
+    })
+    .then(res => {
+        if (res.status === 401) {
+            logout();
+            return null;
+        }
+        return res.json();
+    })
+    .then(data => {
+        if (!data) return;
         tutteAssunzioni = data;
         renderAssunzioni();
     });
@@ -111,7 +141,7 @@ function update(id, stato) {
 
     fetch(BASE_URL + "/assunzioni/" + id, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: authHeaders(),
         body: JSON.stringify({ stato })
     })
     .then(() => loadAssunzioni());
@@ -128,5 +158,6 @@ document.addEventListener("DOMContentLoaded", () => {
 /* ===================== LOGOUT ===================== */
 function logout() {
     localStorage.removeItem("user");
+    localStorage.removeItem("token");
     window.location.href = "login.html";
 }
