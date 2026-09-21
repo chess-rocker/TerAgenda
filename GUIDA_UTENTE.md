@@ -45,7 +45,7 @@ Al primo avvio viene creato automaticamente il file `teragenda.db` (SQLite) nell
 
 ## 3. Avvio del frontend (lato paziente)
 
-Il frontend è statico (HTML/CSS/JS): apri un secondo terminale e serví la cartella `frontend/` con un piccolo server locale, per evitare problemi legati all'apertura diretta dei file (`file://`):
+Il frontend è statico (HTML/CSS/JS): Apri un secondo terminale e, dentro la cartella frontend/, avvia un piccolo server locale (serve per far "girare" le pagine HTML in modo corretto, invece di aprirle con doppio click):
 
 ```bash
 cd frontend
