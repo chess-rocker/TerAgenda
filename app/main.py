@@ -19,7 +19,8 @@ from app.schemas.farmaco import FarmacoCreate, FarmacoResponse
 from app.models.assunzione import Assunzione, StatoAssunzione
 from app.schemas.assunzione import AssunzioneCreate, AssunzioneUpdate
 from datetime import datetime, timedelta
-from fastapi import HTTPException, Header
+from fastapi import HTTPException
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from fastapi.middleware.cors import CORSMiddleware
 import hashlib
 import jwt
@@ -51,8 +52,15 @@ def get_db():
 
 
 # ===================== DIPENDENZE DI AUTENTICAZIONE =====================
+# HTTPBearer registra uno "security scheme" nell'OpenAPI/Swagger: è questo che fa
+# comparire il pulsante "Authorize" (lucchetto) in alto a destra su /docs.
+# auto_error=False: gestiamo noi manualmente il caso "token assente" qui sotto,
+# per restituire 401 (invece del 403 che darebbe di default HTTPBearer).
+bearer_scheme = HTTPBearer(auto_error=False)
+
+
 def get_current_user(
-    authorization: str = Header(None),
+    credentials: HTTPAuthorizationCredentials = Depends(bearer_scheme),
     db: Session = Depends(get_db)
 ) -> User:
     """
@@ -60,10 +68,10 @@ def get_current_user(
     lo verifica e restituisce l'utente corrispondente.
     Blocca la richiesta (401) se il token manca, è invalido o scaduto.
     """
-    if not authorization or not authorization.startswith("Bearer "):
+    if not credentials:
         raise HTTPException(status_code=401, detail="Token mancante")
 
-    token = authorization.split(" ", 1)[1]
+    token = credentials.credentials
 
     try:
         payload = decode_access_token(token)

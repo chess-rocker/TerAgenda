@@ -19,7 +19,7 @@ git clone https://github.com/chess-rocker/TerAgenda.git
 cd TerAgenda
 
 # (consigliato) crea un ambiente virtuale
-python3 -m venv venv
+python -m venv venv   # su Mac/Linux potrebbe servire "python3" al posto di "python"
 source venv/bin/activate      # su Windows: venv\Scripts\activate
 
 pip install -r requirements.txt
@@ -45,16 +45,30 @@ Al primo avvio viene creato automaticamente il file `teragenda.db` (SQLite) nell
 
 ## 3. Avvio del frontend (lato paziente)
 
-Il frontend è statico (HTML/CSS/JS): Apri un secondo terminale e, dentro la cartella frontend/, avvia un piccolo server locale (serve per far "girare" le pagine HTML in modo corretto, invece di aprirle con doppio click):
+Il frontend è fatto di semplici file HTML/CSS/JS. Potresti pensare di aprire `login.html` con un doppio click, ma è meglio evitarlo: aperto così, l'indirizzo nel browser diventa `file:///...` e in alcuni browser le richieste che la pagina fa verso il backend (`http://127.0.0.1:8000`) possono non funzionare correttamente.
+
+**Soluzione**: si "pubblica" la cartella `frontend/` con un piccolo server locale, così l'indirizzo diventa `http://127.0.0.1:5500/...` invece di `file:///...`, ed è coerente con l'indirizzo del backend.
+
+Per farlo, apri un **secondo terminale** (lascia il primo, con `uvicorn` in esecuzione, così com'è) e digita:
 
 ```bash
 cd frontend
-python3 -m http.server 5500
+python -m http.server 5500
 ```
 
-Poi apri nel browser: `http://127.0.0.1:5500/login.html`
+*(Su Windows, se dà errore, prova `py -m http.server 5500`. Su Mac/Linux è spesso `python3 -m http.server 5500`.)*
 
-*(In alternativa puoi aprire `login.html` con "Live Server" di VS Code o simili.)*
+Questo comando avvia un mini server web già incluso in Python (non serve installare nulla). Il terminale resterà "occupato" a mostrare i log delle richieste: è normale, va lasciato aperto finché usi l'app, esattamente come il terminale di `uvicorn`.
+
+A questo punto avrai **due terminali aperti in parallelo**:
+- uno con `uvicorn app.main:app --reload` → il backend, sulla porta 8000
+- uno con `python -m http.server 5500` (su Windows, se serve: `py -m http.server 5500`) → il frontend, sulla porta 5500
+
+Apri quindi nel browser: `http://127.0.0.1:5500/login.html`
+
+*(In alternativa puoi usare l'estensione "Live Server" di VS Code, che fa la stessa cosa con un click.)*
+
+> Se invece apri `login.html` con doppio click e nel tuo browser funziona comunque, va benissimo così: il server locale è solo una precauzione per evitare problemi, non un passaggio obbligatorio se già funziona senza.
 
 ---
 
@@ -91,12 +105,28 @@ Su Swagger, apri **POST /login** con:
 { "email": "medico@test.com", "password": "password123" }
 ```
 
-Nella risposta troverai `access_token`. **Copialo**, ti servirà per tutte le operazioni riservate al medico.
+Nella risposta vedrai qualcosa come:
 
-Per usarlo su Swagger: clicca il pulsante **"Authorize"** in alto a destra nella pagina `/docs` e incollalo come:
+```json
+{
+  "message": "Login effettuato con successo",
+  "user_id": 1,
+  "ruolo": "medico",
+  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIn0.abc123...",
+  "token_type": "bearer"
+}
 ```
-Bearer <access_token copiato>
+
+**Copia solo il valore di `access_token`** (la lunga stringa tra virgolette che inizia con `eyJ...`, senza includere le virgolette) — non serve copiare tutto il resto della risposta.
+
+Per usarlo su Swagger: cerca il pulsante **"Authorize"** (ha un'iconcina a forma di lucchetto 🔒), posizionato in alto a destra nella pagina `/docs`, sopra l'elenco degli endpoint. Cliccalo: si apre un campo di testo dove devi scrivere **la parola "Bearer", uno spazio, e subito dopo il token copiato**, tutto insieme, ad esempio:
+
 ```
+Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIn0.abc123...
+```
+
+*(Non basta incollare solo il token: la parola "Bearer" e lo spazio devi scriverli tu davanti.)*
+
 Da questo momento Swagger invierà automaticamente il token su ogni chiamata autenticata.
 
 ### 4.3 (Opzionale) Creazione di un farmaco
@@ -170,7 +200,8 @@ Tutte le operazioni protette richiedono l'header `Authorization: Bearer <token>`
 | Dashboard vuota | Le assunzioni create non cadono nella data odierna | Crea una terapia con `data_inizio` = data odierna |
 | "Credenziali errate" al login | Email/password sbagliate o utente non registrato | Ripeti la registrazione da Swagger |
 | Dashboard non carica nulla / redirect continuo al login | Token assente o scaduto (validità 8 ore) | Rifai il login |
-| Errore CORS nel browser | Frontend aperto come `file://` invece che via server locale | Usa `python3 -m http.server` come indicato al punto 3 |
+| Errore CORS nel browser | Frontend aperto come `file://` invece che via server locale | Usa `python -m http.server` (o `py -m http.server` su Windows) come indicato al punto 3 |
+| `python3 non riconosciuto` (Windows) | Su Windows il comando si chiama di solito `python`, non `python3` | Usa `python -m http.server 5500`, oppure `py -m http.server 5500` |
 
 ---
 
@@ -183,7 +214,7 @@ uvicorn app.main:app --reload
 
 # Terminale 2 - frontend
 cd frontend
-python3 -m http.server 5500
+python -m http.server 5500   # su Windows, se serve: py -m http.server 5500
 ```
 
 Poi:
