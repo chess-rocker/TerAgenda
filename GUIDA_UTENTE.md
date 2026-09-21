@@ -88,7 +88,9 @@ Vai su `http://127.0.0.1:8000/docs`, apri **POST /register** → "Try it out" e 
 }
 ```
 
-![testImmagine](./docs/screenshots/TeragendaRegistration1.png)
+![RegistrazioneMedico](./docs/screenshots/TeragendaRegistration1.png)
+
+![RegistrazioneMedicoRes](./docs/screenshots/TeragendaRegistration2.png)
 
 **Paziente:**
 ```json
@@ -100,12 +102,18 @@ Vai su `http://127.0.0.1:8000/docs`, apri **POST /register** → "Try it out" e 
 }
 ```
 
+![RegistrazionePaziente](./docs/screenshots/TeragendaRegistration3.png)
+
+![RegistrazionePazienteRes](./docs/screenshots/TeragendaRegistration4.png)
+
 ### 4.2 Login del medico e ottenimento del token
 
 Su Swagger, apri **POST /login** con:
 ```json
 { "email": "medico@test.com", "password": "password123" }
 ```
+
+![LoginMedico](./docs/screenshots/POSTLogin.png)
 
 Nella risposta vedrai qualcosa come:
 
@@ -119,6 +127,8 @@ Nella risposta vedrai qualcosa come:
 }
 ```
 
+![LoginMedicoRes](./docs/screenshots/POSTLoginResponse.png.png)
+
 **Copia solo il valore di `access_token`** (la lunga stringa tra virgolette che inizia con `eyJ...`, senza includere le virgolette) — non serve copiare tutto il resto della risposta.
 
 Per usarlo su Swagger: cerca il pulsante **"Authorize"** (ha un'iconcina a forma di lucchetto 🔒), posizionato in alto a destra nella pagina `/docs`, sopra l'elenco degli endpoint. Cliccalo: si apre un campo di testo dove devi incollare **solo il token puro, senza scrivere nulla davanti**, ad esempio:
@@ -127,9 +137,17 @@ Per usarlo su Swagger: cerca il pulsante **"Authorize"** (ha un'iconcina a forma
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIn0.abc123...
 ```
 
+![AutorizazzioneToken](./docs/screenshots/AutorizationToken.png)
+
 *(Non scrivere tu la parola "Bearer": Swagger la aggiunge automaticamente davanti al token quando invia la richiesta. Se scrivi "Bearer" anche tu, il risultato è un doppio "Bearer" che il server rifiuta con l'errore "Token non valido".)*
 
 Da questo momento Swagger invierà automaticamente il token su ogni chiamata autenticata.
+
+Inoltre puoi accedere già alla Dashboard vuota, testando le credenziali di accesso aprendo il link  `http://127.0.0.1:5500/login.html` grazie al server nella cartella frontend che abbiamo preparato all'inizio.
+
+![AutorizazzioneToken](./docs/screenshots/TeragendaLogin1.png)
+
+![AutorizazzioneToken](./docs/screenshots/TeragendaLogin2.png)
 
 ### 4.3 (Opzionale) Creazione di un farmaco
 
@@ -137,7 +155,12 @@ Con il token del medico attivo, apri **POST /farmaci**:
 ```json
 { "nome": "Paracetamolo", "descrizione": "Antidolorifico/antipiretico" }
 ```
+
+![Farmaco](./docs/screenshots/POSTFarmaco.png)
+
 Annota l'`id` restituito (es. `1`): ti servirà al passo successivo.
+
+![Farmaco](./docs/screenshots/POSTFarmacoRes.png)
 
 ### 4.4 Il medico crea una terapia
 
@@ -153,6 +176,9 @@ Apri **POST /terapie**:
   "note": "Assumere dopo i pasti"
 }
 ```
+
+![Terapia](./docs/screenshots/POSTTerapia.png)
+
 *(`paziente_id` e `medico_id` sono gli `id` restituiti dalla registrazione al punto 4.1 — di norma `1` per il primo utente registrato, `2` per il secondo.)*
 
 Il sistema genera **automaticamente** tutte le assunzioni previste (in questo esempio: 3 giorni × 2 dosi = 6 assunzioni), distribuite nella giornata in base alla frequenza indicata.
@@ -160,6 +186,10 @@ Il sistema genera **automaticamente** tutte le assunzioni previste (in questo es
 ### 4.5 (Opzionale) Firma digitale della terapia
 
 Apri **PUT /terapie/{terapia_id}/firma**, inserisci l'`id` della terapia appena creata e conferma. Solo il medico che l'ha creata può firmarla.
+
+![FirmaTerapia](./docs/screenshots/firmaTerapiaMedico.png)
+
+
 
 ### 4.6 Il paziente accede alla dashboard
 
@@ -169,6 +199,10 @@ Email: paziente@test.com
 Password: password123
 ```
 
+![FirmaTerapia](./docs/screenshots/LoginPaziente.png)
+
+![FirmaTerapia](./docs/screenshots/TeragendaLogin2.png)
+
 Verrai reindirizzato automaticamente a `dashboard.html`, dove vedrai le assunzioni previste **per la giornata odierna** (nell'esempio sopra, solo quelle con `data_inizio` = oggi verranno mostrate — usa una data odierna se vuoi vederle subito in dashboard).
 
 ### 4.7 Uso della dashboard
@@ -176,6 +210,8 @@ Verrai reindirizzato automaticamente a `dashboard.html`, dove vedrai le assunzio
 - I pulsanti in alto (**Tutte / Da prendere / Prese / Saltate**) filtrano la vista senza ricaricare la pagina.
 - Su ogni assunzione, i pulsanti **✔ Presa** e **✖ Saltata** aggiornano lo stato in tempo reale (chiamano `PUT /assunzioni/{id}` con il token del paziente salvato automaticamente al login).
 - **Logout** in alto a destra cancella il token e torna al login.
+
+![Dashboard](./docs/screenshots/TerapieDashboardMedico.png)
 
 ---
 
