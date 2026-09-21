@@ -4,7 +4,7 @@ TerAgenda è un'applicazione web pensata per aiutare medici e pazienti a tenere 
 
 Nasce per rispondere a un problema molto concreto in ambito sanitario: quante volte capita di dimenticare una compressa, o di non ricordare più se l'abbiamo già presa? TerAgenda vuole essere un piccolo aiuto proprio per questo.
 
-📘 **Vuoi provarla subito?** Segui la [Guida Utente](./GUIDA_UTENTE.md): spiega passo passo come avviarla e come usarla, sia dal lato medico che dal lato paziente.
+Per testare la app, a seguito il link [Guida Utente](./GUIDA_UTENTE.md): spiega passo passo come avviarla e come usarla, sia dal lato medico che dal lato paziente.
 
 ---
 
@@ -139,14 +139,20 @@ Trattandosi di dati sanitari, è necessario non lasciare l'app completamente ape
 
 Restano alcuni margini di miglioramento, che terrò volentieri a mente per il futuro: un sistema di refresh del token, una firma digitale "vera" con crittografia asimmetrica, la cifratura dei dati nel database, e una configurazione più restrittiva del CORS (oggi aperto per comodità in fase di sviluppo).
 
+Due scelte di design meritano una nota a parte:
+
+- **Eliminazione delle terapie**: non è stata implementata volutamente. Trattandosi di dati sanitari, cancellare del tutto una terapia andrebbe in contraddizione con la tracciabilità che la firma digitale vuole garantire — nei sistemi sanitari reali, i record clinici tendono a non sparire mai fisicamente. Se in futuro servisse gestire il caso "il medico si è sbagliato", la strada più corretta sarebbe un soft-delete (un endpoint che segna la terapia come "annullata" invece di eliminarla davvero), non una `DELETE` vera e propria.
+- **Chi può aggiornare lo stato di un'assunzione**: al momento questa operazione (`PUT /assunzioni/{id}`) è aperta a qualsiasi utente autenticato, medico incluso. Concettualmente avrebbe più senso riservarla al solo paziente a cui l'assunzione appartiene, dato che è lui l'unico a sapere davvero se ha preso o saltato una dose — lasciarla aperta anche al medico rende ambiguo il significato del dato registrato. Il motivo per cui ho deciso a questa operazione aperta per il momento è dovuto al fatto che in scenari reali (pazienti anziani, poco pratici di tecnologia, assistiti da un caregiver) potrebbe essere realistico che sia un infermiere o un familiare ad aggiornare lo stato per conto del paziente. È un affinamento del controllo degli accessi lasciato per una versione successiva.
+
 ---
 
 ## Cosa si potrebbe aggiungere in futuro
 
-- Notifiche automatiche per ricordare le assunzioni
-- Una dashboard più completa lato medico
-- Una vera app mobile
-- Integrazione con sistemi sanitari già esistenti
+- Notifiche automatiche per ricordare le assunzioni;
+- Una dashboard più completa lato medico;
+- Una vera app mobile;
+- Integrazione con sistemi sanitari già esistenti;
+- Integrazione di maggiori RUOLI, come ad esempio ADMIN o INFERMIERA;
 
 ---
 

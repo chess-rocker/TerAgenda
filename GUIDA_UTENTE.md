@@ -88,6 +88,8 @@ Vai su `http://127.0.0.1:8000/docs`, apri **POST /register** → "Try it out" e 
 }
 ```
 
+![testImmagine](./docs/screenshots/TeragendaRegistration1.png)
+
 **Paziente:**
 ```json
 {
@@ -119,13 +121,13 @@ Nella risposta vedrai qualcosa come:
 
 **Copia solo il valore di `access_token`** (la lunga stringa tra virgolette che inizia con `eyJ...`, senza includere le virgolette) — non serve copiare tutto il resto della risposta.
 
-Per usarlo su Swagger: cerca il pulsante **"Authorize"** (ha un'iconcina a forma di lucchetto 🔒), posizionato in alto a destra nella pagina `/docs`, sopra l'elenco degli endpoint. Cliccalo: si apre un campo di testo dove devi scrivere **la parola "Bearer", uno spazio, e subito dopo il token copiato**, tutto insieme, ad esempio:
+Per usarlo su Swagger: cerca il pulsante **"Authorize"** (ha un'iconcina a forma di lucchetto 🔒), posizionato in alto a destra nella pagina `/docs`, sopra l'elenco degli endpoint. Cliccalo: si apre un campo di testo dove devi incollare **solo il token puro, senza scrivere nulla davanti**, ad esempio:
 
 ```
-Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIn0.abc123...
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIn0.abc123...
 ```
 
-*(Non basta incollare solo il token: la parola "Bearer" e lo spazio devi scriverli tu davanti.)*
+*(Non scrivere tu la parola "Bearer": Swagger la aggiunge automaticamente davanti al token quando invia la richiesta. Se scrivi "Bearer" anche tu, il risultato è un doppio "Bearer" che il server rifiuta con l'errore "Token non valido".)*
 
 Da questo momento Swagger invierà automaticamente il token su ogni chiamata autenticata.
 
