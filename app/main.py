@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session    # tipo per il database
 # IMPORT INTERNI PROGETTO 
 from app.db.database import engine, SessionLocal, Base    # connessione al database
 from app.models.user import User    # modello database
-from app.schemas.user import UserCreate, UserLogin     # schema input API
+from app.schemas.user import UserCreate, UserLogin, TokenResponse     # schema input/output API
 from app.models.terapia import Terapia  # modello database
 from app.schemas.terapia import TerapiaCreate, TerapiaFirma   # schema input API
 from app.utils.security import (
@@ -131,18 +131,18 @@ def register(user_data: UserCreate, db: Session = Depends(get_db)):
         "id": new_user.id
     }
 
-@app.post("/login")
+@app.post("/login", response_model=TokenResponse)
 def login(user_data: UserLogin, db: Session = Depends(get_db)):
      # cerca utente per email
     user = db.query(User).filter(User.email == user_data.email).first()
 
     # se non esiste
     if not user:
-        return {"error": "Utente non trovato"}
+        raise HTTPException(status_code=401, detail="Utente non trovato")
 
     # verifica password
     if not verify_password(user_data.password, user.password_hash):
-        return {"error": "Password errata"}
+        raise HTTPException(status_code=401, detail="Password errata")
 
     # genera il token di accesso da usare nelle chiamate successive
     token = create_access_token(user_id=user.id, ruolo=user.ruolo)
