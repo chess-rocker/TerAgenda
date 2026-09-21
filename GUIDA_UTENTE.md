@@ -127,7 +127,7 @@ Nella risposta vedrai qualcosa come:
 }
 ```
 
-![LoginMedicoRes](./docs/screenshots/POSTLoginResponsepng)
+![LoginMedicoRes](./docs/screenshots/POSTLoginResponse.png)
 
 **Copia solo il valore di `access_token`** (la lunga stringa tra virgolette che inizia con `eyJ...`, senza includere le virgolette) — non serve copiare tutto il resto della risposta.
 
